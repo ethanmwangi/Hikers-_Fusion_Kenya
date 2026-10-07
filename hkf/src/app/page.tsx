@@ -1,42 +1,88 @@
 export default function Home() {
   return (
     <main>
-      <nav className="flex items-center justify-between px-8 py-4">
-        <h2>Hikers Fusion KE</h2>
+      {/* Hero Section */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        />
 
-        <div className="flex gap-6">
-          <a href="/">Home</a>
-          <a href="/hiking">Hiking</a>
-          <a href="/safaris">Safaris</a>
-          <a href="/camping">Camping</a>
-          <a href="/travel">Travel</a>
-          <a href="/contact">Contact</a>
-        </div>
-      </nav>
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-[#18221D]/60" />
 
-      <section className="min-h-[70vh] px-8 py-24 flex flex-col justify-center">
-        <h1 className="text-5xl font-bold">
-          Adventure Starts Here
-        </h1>
+        {/* Hero Content */}
+        <div className="relative z-10">
+          {/* Navbar */}
+          <nav className="flex items-center justify-between px-8 py-6 text-[#FAF9F4]">
+            <h2 className="text-xl font-bold tracking-wide">
+              Hikers Fusion KE
+            </h2>
 
-        <p className="mt-4 text-xl">
-          Hiking, safaris, camping and travel across Kenya and East Africa.
-        </p>
+            <div className="hidden gap-7 md:flex">
+              <a href="/" className="transition hover:text-[#C49A3A]">
+                Home
+              </a>
 
-        <div className="mt-8 flex gap-4">
-          <a
-            href="/hiking"
-            className="rounded-full bg-green-800 px-6 py-3 text-white"
-          >
-            Explore Experiences
-          </a>
+              <a href="/hiking" className="transition hover:text-[#C49A3A]">
+                Hiking
+              </a>
 
-          <a
-            href="/contact"
-            className="rounded-full border border-green-800 px-6 py-3 text-green-800"
-          >
-            Plan Your Trip
-          </a>
+              <a href="/safaris" className="transition hover:text-[#C49A3A]">
+                Safaris
+              </a>
+
+              <a href="/camping" className="transition hover:text-[#C49A3A]">
+                Camping
+              </a>
+
+              <a href="/travel" className="transition hover:text-[#C49A3A]">
+                Travel
+              </a>
+
+              <a href="/contact" className="transition hover:text-[#C49A3A]">
+                Contact
+              </a>
+            </div>
+          </nav>
+
+          {/* Hero Content */}
+          <div className="flex min-h-[calc(100vh-88px)] items-center px-8 py-20">
+            <div className="max-w-3xl text-[#FAF9F4]">
+
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#C49A3A]">
+                Hiking • Safaris • Camping • Travel
+              </p>
+
+              <h1 className="text-5xl font-bold leading-tight md:text-7xl">
+                Adventure Starts Here
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-[#F7F3E8] md:text-xl">
+                Discover Kenya and East Africa through unforgettable hiking,
+                safari, camping and travel experiences.
+              </p>
+
+              <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+                {/* Primary Button */}
+                <a
+                  href="/hiking"
+                  className="rounded-full bg-[#1F4D36] px-7 py-3.5 text-center font-semibold text-[#FAF9F4] transition hover:bg-[#286447]"
+                >
+                  Explore Experiences
+                </a>
+
+                {/* Secondary Button */}
+                <a
+                  href="/contact"
+                  className="rounded-full border border-[#FAF9F4] px-7 py-3.5 text-center font-semibold text-[#FAF9F4] transition hover:bg-[#FAF9F4] hover:text-[#18221D]"
+                >
+                  Plan Your Trip
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
