@@ -1,35 +1,78 @@
-const services = [
+type Service = {
+  slug: string;
+  title: string;
+  description: string;
+  href: string;
+  image: string;
+};
+
+type Route = {
+  slug: string;
+  name: string;
+  description: string;
+  image: string;
+};
+
+const services: Service[] = [
   {
+    slug: "hiking",
     title: "Hiking",
     description:
       "Explore mountains, forests, hills and scenic trails across Kenya, East Africa and beyond.",
     href: "/hiking",
+    image: "/images/services/hiking.jpg",
   },
   {
+    slug: "safaris",
     title: "Safaris",
     description:
       "Experience Kenya's incredible wildlife through carefully planned safari adventures.",
     href: "/safaris",
+    image: "/images/services/safaris.jpg",
   },
   {
+    slug: "camping",
     title: "Camping",
     description:
       "Enjoy scenic campsites, outdoor getaways and unforgettable nights under the stars.",
     href: "/camping",
+    image: "/images/services/camping.jpg",
   },
   {
+    slug: "travel",
     title: "Travel",
     description:
       "Plan trips across Kenya, East Africa and beyond around your own journey.",
     href: "/travel",
+    image: "/images/services/travel.jpg",
   },
 ];
 
-const routes = [
-  ["Sirimon", "Forest, moorland and mountain scenery."],
-  ["Chogoria", "Valleys, waterfalls and dramatic landscapes."],
-  ["Naro Moru", "A popular route toward the higher parts of the mountain."],
-  ["Burguret", "A quieter and more remote mountain experience."],
+const routes: Route[] = [
+  {
+    slug: "sirimon",
+    name: "Sirimon",
+    description: "Forest, moorland and mountain scenery.",
+    image: "/images/routes/sirimon.jpg",
+  },
+  {
+    slug: "chogoria",
+    name: "Chogoria",
+    description: "Valleys, waterfalls and dramatic landscapes.",
+    image: "/images/routes/chogoria.jpg",
+  },
+  {
+    slug: "naro-moru",
+    name: "Naro Moru",
+    description: "A popular route toward the higher parts of the mountain.",
+    image: "/images/routes/naro-moru.jpg",
+  },
+  {
+    slug: "burguret",
+    name: "Burguret",
+    description: "A quieter and more remote mountain experience.",
+    image: "/images/routes/burguret.jpg",
+  },
 ];
 
 const destinations = [
@@ -55,6 +98,64 @@ const steps = [
   ["03", "Get Your Itinerary", "Receive your trip details, quotation and booking information."],
   ["04", "Confirm Your Trip", "Once everything is set, get ready for your adventure."],
 ];
+
+/**
+ * A portrait-oval, hover-reveal card used for both the service offerings
+ * and the Mount Kenya routes. Image-first by default; title, description
+ * and the link surface on hover (and on keyboard focus, for a11y).
+ */
+function AdventureOval({
+  href,
+  image,
+  alt,
+  title,
+  description,
+}: {
+  href: string;
+  image: string;
+  alt: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <a
+      href={href}
+      className="group relative block aspect-[4/5] overflow-hidden rounded-[50%] outline-none focus-visible:ring-4 focus-visible:ring-[#C49A3A]/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[#FAF9F4]"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus:scale-110"
+      />
+
+      {/* Always-present, screen-reader-only label so the card is meaningful without hover */}
+      <span className="sr-only">{title}: {description}</span>
+
+      {/* Reveal scrim */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-t from-[#18221D]/95 via-[#18221D]/55 to-transparent opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100 group-focus:opacity-100"
+      />
+
+      {/* Reveal content */}
+      <span
+        aria-hidden="true"
+        className="absolute inset-x-0 bottom-0 flex translate-y-5 flex-col items-center px-8 pb-10 pt-6 text-center opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-focus:translate-y-0 group-focus:opacity-100"
+      >
+        <span className="text-xl font-bold text-[#FAF9F4]">{title}</span>
+        <span className="mt-2 text-sm leading-relaxed text-[#F7F3E8]">
+          {description}
+        </span>
+        <span className="mt-4 text-sm font-semibold text-[#C49A3A]">
+          Explore &rarr;
+        </span>
+      </span>
+    </a>
+  );
+}
 
 export default function Home() {
   return (
@@ -170,17 +271,25 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="relative min-h-[400px] overflow-hidden bg-[#1F4D36]">
-            <div className="absolute inset-0 flex items-center justify-center p-10 text-center">
-              <div>
-                <p className="text-3xl font-bold text-[#FAF9F4]">
-                  Kenya & East Africa
-                </p>
-                <div className="mx-auto mt-5 h-px w-16 bg-[#C49A3A]" />
-                <p className="mt-5 text-sm tracking-wide text-[#F7F3E8]">
-                  Explore. Experience. Remember.
-                </p>
-              </div>
+          {/* Real photo panel, replacing the old empty text box */}
+          <div className="relative min-h-[420px] overflow-hidden rounded-2xl">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/about-kenya.jpg"
+              alt="Scenic landscape across Kenya"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#18221D]/90 via-[#18221D]/10 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 p-10">
+              <p className="text-3xl font-bold text-[#FAF9F4]">
+                Kenya & East Africa
+              </p>
+              <div className="mt-5 h-px w-16 bg-[#C49A3A]" />
+              <p className="mt-5 text-sm tracking-wide text-[#F7F3E8]">
+                Explore. Experience. Remember.
+              </p>
             </div>
           </div>
         </div>
@@ -199,34 +308,24 @@ export default function Home() {
 
           <p className="mt-5 max-w-2xl leading-relaxed text-gray-600">
             From mountain trails to wildlife safaris, we create outdoor
-            experiences designed around how you want to explore.
+            experiences designed around how you want to explore. Hover a
+            circle — or tab to it — to see what&apos;s inside.
           </p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:gap-10 md:grid-cols-4">
             {services.map((service) => (
-              <article
-                key={service.title}
-                className="border-t-2 border-[#C49A3A] bg-[#F7F3E8] p-7"
-              >
-                <h3 className="text-2xl font-bold text-[#18221D]">
-                  {service.title}
-                </h3>
-
-                <p className="mt-4 leading-relaxed text-gray-600">
-                  {service.description}
-                </p>
-
-                <a
-                  href={service.href}
-                  className="mt-6 inline-block font-semibold text-[#1F4D36] hover:text-[#C49A3A]"
-                >
-                  Explore {service.title} →
-                </a>
-              </article>
+              <AdventureOval
+                key={service.slug}
+                href={service.href}
+                image={service.image}
+                alt={`${service.title} experience with Hikers Fusion KE`}
+                title={service.title}
+                description={service.description}
+              />
             ))}
           </div>
 
-          <div className="mt-6 bg-[#1F4D36] p-8 text-[#FAF9F4] md:p-10">
+          <div className="mt-14 bg-[#1F4D36] p-8 text-[#FAF9F4] md:p-10">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C49A3A]">
               Custom Experiences
             </p>
@@ -263,20 +362,20 @@ export default function Home() {
 
           <p className="mt-5 max-w-2xl leading-relaxed text-[#F7F3E8]">
             Explore one of Kenya&apos;s most iconic mountain destinations
-            through a range of routes and experiences.
+            through a range of routes and experiences. Hover a circle — or
+            tab to it — to see what&apos;s inside.
           </p>
 
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {routes.map(([name, description]) => (
-              <div
-                key={name}
-                className="border border-white/15 bg-white/10 p-6"
-              >
-                <h3 className="text-xl font-bold">{name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#F7F3E8]">
-                  {description}
-                </p>
-              </div>
+          <div className="mt-14 grid grid-cols-2 gap-6 sm:gap-10 lg:grid-cols-4">
+            {routes.map((route) => (
+              <AdventureOval
+                key={route.slug}
+                href={`/hiking#${route.slug}`}
+                image={route.image}
+                alt={`${route.name} route on Mount Kenya`}
+                title={route.name}
+                description={route.description}
+              />
             ))}
           </div>
         </div>
