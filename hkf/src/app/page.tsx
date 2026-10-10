@@ -12,7 +12,7 @@ const services: Item[] = [
 ];
 
 const routes: Item[] = [
-  { slug: "sirimon", title: "Sirimon", href: "/hiking#sirimon", image: "/images/routes/sirimoni.jpg",
+  { slug: "sirimon", title: "Sirimon", href: "/hiking#sirimon", image: "/images/routes/r sirimoni.jpg",
     desc: "Forest, moorland and mountain scenery." },
   { slug: "chogoria", title: "Chogoria", href: "/hiking#chogoria", image: "/images/routes/chogoria.jpg",
     desc: "Valleys, waterfalls and dramatic landscapes." },
