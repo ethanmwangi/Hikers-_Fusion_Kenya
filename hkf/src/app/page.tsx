@@ -1,3 +1,5 @@
+import Reveal from "../components/Reveal";
+
 type Item = { slug: string; title: string; desc: string; href: string; image: string };
 
 const services: Item[] = [
@@ -38,7 +40,7 @@ const steps = [
 function OfferRow({ index, item }: { index: number; item: Item }) {
   const reversed = index % 2 === 1;
   return (
-    <div className={`flex flex-col items-center gap-10 md:gap-16 ${reversed ? "md:flex-row-reverse" : "md:flex-row"}`}>
+    <Reveal className={`flex flex-col items-center gap-10 md:gap-16 ${reversed ? "md:flex-row-reverse" : "md:flex-row"}`}>
       <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
@@ -56,14 +58,15 @@ function OfferRow({ index, item }: { index: number; item: Item }) {
           Explore
         </a>
       </div>
-    </div>
+    </Reveal>
   );
 }
 
 export default function Home() {
   return (
     <main className="bg-[#FAF9F4]">
-      {/* HERO */}
+      {/* HERO — reveals on page load are handled by browser paint, not scroll,
+          so the hero text stays immediately visible (no Reveal wrapper). */}
       <section className="relative flex min-h-[90vh] items-end overflow-hidden">
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('/images/hero.jpg')" }} />
         <div className="absolute inset-0 bg-[#18221D]/55" />
@@ -90,7 +93,7 @@ export default function Home() {
 
       {/* ABOUT */}
       <section id="about" className="px-6 py-28 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center">
+        <Reveal className="mx-auto max-w-3xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Who We Are</p>
           <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-[#18221D] md:text-5xl">
             Where <span className="italic text-[#1F4D36]">adventure</span> meets the wild.
@@ -102,18 +105,18 @@ export default function Home() {
           </div>
           <div className="mx-auto mt-10 h-px w-16 bg-[#C49A3A]" />
           <p className="mt-6 font-serif text-lg italic text-[#1F4D36]">&ldquo;Explore. Experience. Remember.&rdquo;</p>
-        </div>
+        </Reveal>
       </section>
 
       {/* WHAT WE OFFER */}
       <section id="services" className="px-6 py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">What We Offer</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-[#18221D] md:text-5xl">
               Experiences crafted with <span className="italic text-[#1F4D36]">intention</span>
             </h2>
-          </div>
+          </Reveal>
           <div className="mt-20 space-y-24">
             {services.map((service, i) => (
               <OfferRow key={service.slug} index={i} item={service} />
@@ -124,7 +127,7 @@ export default function Home() {
 
       {/* CUSTOM EXPERIENCES — short break between the two galleries */}
       <section className="px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl border-y border-[#C49A3A]/30 py-14 text-center">
+        <Reveal className="mx-auto max-w-7xl border-y border-[#C49A3A]/30 py-14 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#C49A3A]">Custom Experiences</p>
           <h3 className="mt-3 font-serif text-2xl font-bold text-[#18221D]">Build a trip around your plans.</h3>
           <p className="mx-auto mt-3 max-w-xl leading-relaxed text-gray-600">
@@ -136,13 +139,13 @@ export default function Home() {
           >
             Plan Your Experience
           </a>
-        </div>
+        </Reveal>
       </section>
 
       {/* EXPLORE KENYA / MOUNT KENYA — identical row treatment to Services above */}
       <section id="hiking" className="px-6 py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Explore Kenya</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-[#18221D] md:text-5xl">
               Discover <span className="italic text-[#1F4D36]">Mount Kenya</span>
@@ -150,26 +153,26 @@ export default function Home() {
             <p className="mx-auto mt-5 max-w-xl leading-relaxed text-gray-600">
               From scenic day hikes to multi-day trekking adventures and summit attempts &mdash; explore the mountain through routes that match your fitness, time and the scenery you want to see.
             </p>
-          </div>
+          </Reveal>
           <div className="mt-20 space-y-24">
             {routes.map((route, i) => (
               <OfferRow key={route.slug} index={i} item={route} />
             ))}
           </div>
-          <div className="mt-16 text-center">
+          <Reveal className="mt-16 text-center">
             <a
               href="/hiking#aberdares"
               className="inline-block border-b border-[#C49A3A] pb-1 text-sm font-semibold uppercase tracking-[0.2em] text-[#1F4D36] transition hover:text-[#C49A3A]"
             >
               Also Explore The Aberdares
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* SAFARI HIGHLIGHT */}
       <section id="safaris" className="px-6 py-28 lg:px-8">
-        <div className="mx-auto max-w-5xl border border-[#C49A3A]/40 bg-[#18221D] px-8 py-16 text-center text-[#FAF9F4] md:px-16">
+        <Reveal className="mx-auto max-w-5xl border border-[#C49A3A]/40 bg-[#18221D] px-8 py-16 text-center text-[#FAF9F4] md:px-16">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Wildlife &amp; Safari</p>
           <h2 className="mx-auto mt-4 max-w-3xl font-serif text-4xl font-bold md:text-5xl">See Kenya Beyond the Trail</h2>
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-[#F7F3E8]">
@@ -186,12 +189,12 @@ export default function Home() {
           >
             Explore Safaris
           </a>
-        </div>
+        </Reveal>
       </section>
 
       {/* WHO WE SERVE */}
       <section className="px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
+        <Reveal className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Made For Every Explorer</p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 font-serif text-xl text-[#18221D]">
             {audiences.map((a, i) => (
@@ -201,41 +204,41 @@ export default function Home() {
               </span>
             ))}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* SAFETY & RESPONSIBLE TRAVEL */}
       <section className="px-6 py-20 lg:px-8">
         <div className="mx-auto grid max-w-5xl gap-12 text-center md:grid-cols-2 md:text-left">
-          <div>
+          <Reveal>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Safety</p>
             <p className="mt-4 leading-relaxed text-gray-600">
               We plan our trips carefully and work with experienced guides and service providers to ensure our clients have well-organised experiences.
             </p>
-          </div>
-          <div>
+          </Reveal>
+          <Reveal delay={150}>
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Responsible Travel</p>
             <p className="mt-4 leading-relaxed text-gray-600">
               We respect the places we visit, minimise our impact on the environment and encourage responsible interaction with local communities and wildlife.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* HOW IT WORKS */}
       <section className="px-6 py-28 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Simple Booking</p>
             <h2 className="mt-4 font-serif text-4xl font-bold text-[#18221D] md:text-5xl">How It Works</h2>
-          </div>
+          </Reveal>
           <div className="mt-16 grid gap-12 md:grid-cols-4">
-            {steps.map(([n, t, d]) => (
-              <div key={n} className="text-center">
+            {steps.map(([n, t, d], i) => (
+              <Reveal key={n} delay={i * 120} className="text-center">
                 <span className="font-serif text-5xl font-light text-[#C49A3A]/60">{n}</span>
                 <h3 className="mt-4 text-xl font-bold text-[#18221D]">{t}</h3>
                 <p className="mt-3 leading-relaxed text-gray-600">{d}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -243,7 +246,7 @@ export default function Home() {
 
       {/* FINAL CTA */}
       <section className="bg-[#1F4D36] px-6 py-28 text-center text-[#FAF9F4] lg:px-8">
-        <div className="mx-auto max-w-3xl">
+        <Reveal className="mx-auto max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Ready to Explore?</p>
           <h2 className="mt-4 font-serif text-4xl font-bold md:text-5xl">
             Your Next <span className="italic text-[#C49A3A]">Adventure</span> Starts Here.
@@ -257,7 +260,7 @@ export default function Home() {
           >
             Book via WhatsApp
           </a>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

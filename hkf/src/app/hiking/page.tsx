@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "../../components/Reveal";
 
 export const metadata: Metadata = {
   title: "Hiking | Hikers Fusion KE",
@@ -54,7 +55,7 @@ export default function HikingPage() {
       <section className="px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-7xl space-y-24">
           {routes.map((route, i) => (
-            <div
+            <Reveal
               key={route.slug}
               id={route.slug}
               className={`scroll-mt-24 flex flex-col items-center gap-10 md:gap-16 ${i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"}`}
@@ -77,29 +78,30 @@ export default function HikingPage() {
                   Enquire on WhatsApp
                 </a>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* ABERDARES */}
       <section id="aberdares" className="scroll-mt-24 border-t border-[#C49A3A]/30 px-6 py-24 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
+        <Reveal className="mx-auto max-w-4xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Explore The Aberdares</p>
           <h2 className="mt-4 font-serif text-4xl font-bold text-[#18221D] md:text-5xl">The Aberdare Range</h2>
           <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-gray-600">
             The Aberdare Range offers a mix of mountain scenery, forests, wildlife, hiking, camping and scenic drives. From exploring the highlands to camping in the mountains, the Aberdares offer different ways to experience the outdoors.
           </p>
-        </div>
+        </Reveal>
         <div className="mx-auto mt-14 flex max-w-3xl flex-wrap justify-center gap-3">
-          {aberdarePeaks.map((peak) => (
-            <a
-              key={peak}
-              href={waLink(peak)}
-              className="rounded-full border border-[#1F4D36]/20 bg-white px-5 py-2.5 text-sm font-semibold text-[#18221D] transition hover:border-[#C49A3A] hover:text-[#1F4D36]"
-            >
-              {peak}
-            </a>
+          {aberdarePeaks.map((peak, i) => (
+            <Reveal key={peak} delay={i * 80}>
+              <a
+                href={waLink(peak)}
+                className="rounded-full border border-[#1F4D36]/20 bg-white px-5 py-2.5 text-sm font-semibold text-[#18221D] transition hover:border-[#C49A3A] hover:text-[#1F4D36]"
+              >
+                {peak}
+              </a>
+            </Reveal>
           ))}
         </div>
         <p className="mt-6 text-center text-sm text-gray-500">Tap a peak to enquire on WhatsApp.</p>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "../../components/Reveal";
 
 export const metadata: Metadata = {
   title: "Safaris | Hikers Fusion KE",
@@ -29,20 +30,23 @@ export default function SafarisPage() {
 
       <section className="px-6 py-24 lg:px-8">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-center font-serif text-3xl font-bold text-[#18221D] md:text-4xl">Destinations</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center leading-relaxed text-gray-600">
-            Tap a destination to send us an enquiry on WhatsApp &mdash; we&apos;ll follow up with an itinerary and quotation based on your dates and group size.
-          </p>
+          <Reveal className="text-center">
+            <h2 className="font-serif text-3xl font-bold text-[#18221D] md:text-4xl">Destinations</h2>
+            <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-gray-600">
+              Tap a destination to send us an enquiry on WhatsApp &mdash; we&apos;ll follow up with an itinerary and quotation based on your dates and group size.
+            </p>
+          </Reveal>
           <div className="mx-auto mt-14 grid max-w-3xl gap-4 sm:grid-cols-2">
-            {destinations.map((d) => (
-              <a
-                key={d}
-                href={waLink(d)}
-                className="flex items-center justify-between border border-[#1F4D36]/15 bg-white px-6 py-5 font-semibold text-[#18221D] transition hover:border-[#C49A3A] hover:text-[#1F4D36]"
-              >
-                {d}
-                <span className="text-[#C49A3A]">&rarr;</span>
-              </a>
+            {destinations.map((d, i) => (
+              <Reveal key={d} delay={i * 80}>
+                <a
+                  href={waLink(d)}
+                  className="flex items-center justify-between border border-[#1F4D36]/15 bg-white px-6 py-5 font-semibold text-[#18221D] transition hover:border-[#C49A3A] hover:text-[#1F4D36]"
+                >
+                  {d}
+                  <span className="text-[#C49A3A]">&rarr;</span>
+                </a>
+              </Reveal>
             ))}
           </div>
         </div>

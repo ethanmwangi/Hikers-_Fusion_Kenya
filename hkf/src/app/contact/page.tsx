@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "../../components/Reveal";
 
 export const metadata: Metadata = {
   title: "Contact | Hikers Fusion KE",
@@ -11,7 +12,7 @@ export default function ContactPage() {
   return (
     <main className="bg-[#FAF9F4]">
       <section className="px-6 py-28 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C49A3A]">Get In Touch</p>
           <h1 className="mt-4 font-serif text-4xl font-bold text-[#18221D] md:text-5xl">Let&apos;s Plan Your Trip</h1>
           <p className="mt-6 leading-relaxed text-gray-600">
@@ -35,7 +36,7 @@ export default function ContactPage() {
               <a href="mailto:info@hikersfusion.co.ke" className="font-semibold text-[#1F4D36] hover:text-[#C49A3A]">info@hikersfusion.co.ke</a>
             </p>
           </div>
-        </div>
+        </Reveal>
       </section>
     </main>
   );

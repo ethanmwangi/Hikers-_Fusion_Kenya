@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Reveal from "../../components/Reveal";
 
 export const metadata: Metadata = {
   title: "Travel | Hikers Fusion KE",
@@ -23,15 +24,17 @@ export default function TravelPage() {
       </section>
 
       <section className="px-6 py-24 text-center lg:px-8">
-        <p className="mx-auto max-w-xl leading-relaxed text-gray-600">
-          Have somewhere specific in mind? Tell us where you want to go, when you want to travel and who you are travelling with, and we&apos;ll help create an itinerary around your needs.
-        </p>
-        <a
-          href={waLink}
-          className="mt-8 inline-block rounded-full bg-[#1F4D36] px-8 py-3.5 font-semibold text-[#FAF9F4] transition hover:bg-[#286447]"
-        >
-          Enquire on WhatsApp
-        </a>
+        <Reveal>
+          <p className="mx-auto max-w-xl leading-relaxed text-gray-600">
+            Have somewhere specific in mind? Tell us where you want to go, when you want to travel and who you are travelling with, and we&apos;ll help create an itinerary around your needs.
+          </p>
+          <a
+            href={waLink}
+            className="mt-8 inline-block rounded-full bg-[#1F4D36] px-8 py-3.5 font-semibold text-[#FAF9F4] transition hover:bg-[#286447]"
+          >
+            Enquire on WhatsApp
+          </a>
+        </Reveal>
       </section>
     </main>
   );
