@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Reveal from "../../components/Reveal";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Travel | Hikers Fusion KE",
