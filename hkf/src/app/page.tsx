@@ -33,20 +33,64 @@ const steps = [
   ["03", "Get Your Itinerary", "We will send you the trip details, quotation and booking information."],
   ["04", "Confirm Your Trip", "Once everything is agreed, we confirm your booking and share the final trip information."],
 ];
+
 function OfferRow({ index, item }: { index: number; item: Item }) {
   const reversed = index % 2 === 1;
+
   return (
-    <Reveal className={`flex flex-col items-center gap-10 md:gap-16 ${reversed ? "md:flex-row-reverse" : "md:flex-row"}`}>
-      <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.images[0]} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+    <Reveal
+      className={`flex flex-col items-center gap-10 md:gap-16 ${
+        reversed ? "md:flex-row-reverse" : "md:flex-row"
+      }`}
+    >
+      <div
+        className={`w-full md:w-1/2 ${
+          item.images.length >= 2 ? "grid grid-cols-2 gap-2" : ""
+        }`}
+      >
+        {item.images.length >= 2 ? (
+          item.images.map((src, i) => (
+            <div
+              key={src}
+              className="relative aspect-[3/4] overflow-hidden"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={src}
+                alt={`${item.title} ${i + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ))
+        ) : (
+          <div className="relative aspect-[4/3] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={item.images[0]}
+              alt={item.title}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        )}
       </div>
+
       <div className="w-full md:w-1/2">
         <span className="font-serif text-6xl font-light text-[#C49A3A]/50">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <h3 className="mt-3 font-serif text-3xl font-bold text-[#18221D] md:text-4xl">{item.title}</h3>
-        <p className="mt-4 max-w-md leading-relaxed text-gray-600">{item.desc}</p>
+
+        <h3 className="mt-3 font-serif text-3xl font-bold text-[#18221D] md:text-4xl">
+          {item.title}
+        </h3>
+
+        <p className="mt-4 max-w-md leading-relaxed text-gray-600">
+          {item.desc}
+        </p>
+
         <a
           href={item.href}
           className="mt-6 inline-block border-b border-[#C49A3A] pb-1 text-sm font-semibold uppercase tracking-[0.2em] text-[#1F4D36] transition hover:text-[#C49A3A]"
@@ -57,6 +101,7 @@ function OfferRow({ index, item }: { index: number; item: Item }) {
     </Reveal>
   );
 }
+
 
 export default function Home() {
   return (
