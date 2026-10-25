@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Hiking | Hikers Fusion KE",
@@ -38,26 +39,42 @@ function waLink(subject: string) {
 
 // Shows one big photo for routes with a single image, or a side-by-side
 // pair for routes (like Sirimon) that have two.
+
 function RoutePhotos({ images, name }: { images: string[]; name: string }) {
   if (images.length >= 2) {
     return (
       <div className="grid w-full grid-cols-2 gap-2 md:w-1/2">
         {images.slice(0, 2).map((src, i) => (
-          <div key={src} className="relative aspect-[3/4] overflow-hidden">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={src} alt={`${name} ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+          <div
+            key={src}
+            className="relative aspect-[3/4] overflow-hidden"
+          >
+            <Image
+              src={src}
+              alt={`${name} ${i + 1}`}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover"
+            />
           </div>
         ))}
       </div>
     );
   }
+
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={images[0]} alt={name} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+      <Image
+        src={images[0]}
+        alt={name}
+        fill
+        sizes="(max-width: 768px) 100vw, 50vw"
+        className="object-cover"
+      />
     </div>
   );
 }
+
 
 export default function HikingPage() {
   return (
