@@ -6,16 +6,16 @@ export const metadata: Metadata = {
   description: "Mount Kenya routes and Aberdare Range hiking experiences with Hikers Fusion KE.",
 };
 
-type Route = { slug: string; name: string; desc: string; image: string };
+type Route = { slug: string; name: string; desc: string; images: string[] };
 
 const routes: Route[] = [
-  { slug: "sirimon", name: "Sirimon", image: "/images/routes/sirimoni.jpg",
+  { slug: "sirimon", name: "Sirimon", images: ["/images/routes/sirimon-1.jpg", "/images/routes/sirimon-2.jpg"],
     desc: "Forest, moorland and beautiful mountain scenery." },
-  { slug: "chogoria", name: "Chogoria", image: "/images/routes/chogoria.jpg",
+  { slug: "chogoria", name: "Chogoria", images: ["/images/routes/chogoria.jpg"],
     desc: "Known for valleys, waterfalls, dramatic landscapes and scenic views." },
-  { slug: "naro-moru", name: "Naro Moru", image: "/images/routes/naro-moru.jpg",
+  { slug: "naro-moru", name: "Naro Moru", images: ["/images/routes/naro-moru.jpg"],
     desc: "A popular route providing access to the higher parts of the mountain." },
-  { slug: "burguret", name: "Burguret", image: "/images/routes/burguret.jpg",
+  { slug: "burguret", name: "Burguret", images: ["/images/routes/burguret.jpg"],
     desc: "A quieter and more remote route for those looking for a less crowded experience." },
 ];
 
@@ -34,6 +34,29 @@ const aberdarePeaks = [
 function waLink(subject: string) {
   const text = `Hi! I'd like to enquire about the ${subject} on Mount Kenya / the Aberdares.`;
   return `https://wa.me/254181189908?text=${encodeURIComponent(text)}`;
+}
+
+// Shows one big photo for routes with a single image, or a side-by-side
+// pair for routes (like Sirimon) that have two.
+function RoutePhotos({ images, name }: { images: string[]; name: string }) {
+  if (images.length >= 2) {
+    return (
+      <div className="grid w-full grid-cols-2 gap-2 md:w-1/2">
+        {images.slice(0, 2).map((src, i) => (
+          <div key={src} className="relative aspect-[3/4] overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={src} alt={`${name} ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  return (
+    <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={images[0]} alt={name} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+    </div>
+  );
 }
 
 export default function HikingPage() {
@@ -60,10 +83,7 @@ export default function HikingPage() {
               id={route.slug}
               className={`scroll-mt-24 flex flex-col items-center gap-10 md:gap-16 ${i % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"}`}
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={route.image} alt={route.name} loading="lazy" decoding="async" className="h-full w-full object-cover" />
-              </div>
+              <RoutePhotos images={route.images} name={route.name} />
               <div className="w-full md:w-1/2">
                 <span className="font-serif text-6xl font-light text-[#C49A3A]/50">
                   {String(i + 1).padStart(2, "0")}

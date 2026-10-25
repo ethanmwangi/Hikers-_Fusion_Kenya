@@ -32,11 +32,6 @@ const steps = [
   ["03", "Get Your Itinerary", "We will send you the trip details, quotation and booking information."],
   ["04", "Confirm Your Trip", "Once everything is agreed, we confirm your booking and share the final trip information."],
 ];
-
-// A numbered, full-bleed row: big photo one side, number + copy + link the
-// other. Alternates sides down the list for rhythm. Reused for both the
-// service offerings and the Mount Kenya routes so the two sections read
-// as one continuous, consistent gallery rather than two different styles.
 function OfferRow({ index, item }: { index: number; item: Item }) {
   const reversed = index % 2 === 1;
   return (
@@ -104,7 +99,7 @@ export default function Home() {
             <p>Our aim is simple: to make travel accessible while offering safe, well-organised and enjoyable experiences.</p>
           </div>
           <div className="mx-auto mt-10 h-px w-16 bg-[#C49A3A]" />
-          <p className="mt-6 font-serif text-lg italic text-[#1F4D36]">&ldquo;Explore. Experience. Remember.&rdquo;</p>
+          <p className="mt-6 font-serif text-lg italic text-[#1F4D36]">&ldquo;Explore More. Live More&rdquo;</p>
         </Reveal>
       </section>
 
