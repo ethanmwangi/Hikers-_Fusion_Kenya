@@ -1,26 +1,27 @@
+import { ZCOOL_KuaiLe } from "next/font/google";
 import Reveal from "../components/Reveal";
 
-type Item = { slug: string; title: string; desc: string; href: string; image: string };
+type Item = { slug: string; title: string; desc: string; href: string; images: string[] };
 
 const services: Item[] = [
-  { slug: "hiking", title: "Hiking", href: "/hiking", image: "/images/services/hiking.jpg",
+  { slug: "hiking", title: "Hiking", href: "/hiking", images: ["/images/services/hiking.jpg"],
     desc: "Explore mountains, hills, forests and scenic trails across Kenya, East Africa and beyond." },
-  { slug: "safaris", title: "Safaris", href: "/safaris", image: "/images/services/safaris.jpg",
+  { slug: "safaris", title: "Safaris", href: "/safaris", images: ["/images/services/safaris.jpg"],
     desc: "Experience Kenya's wildlife and natural landscapes through game drives and safari experiences." },
-  { slug: "camping", title: "Camping", href: "/camping", image: "/images/services/camping.jpg",
+  { slug: "camping", title: "Camping", href: "/camping", images: ["/images/services/camping.jpg"],
     desc: "Get closer to nature through camping experiences across Kenya, East Africa and beyond." },
-  { slug: "travel", title: "Travel", href: "/travel", image: "/images/services/travel.jpg",
+  { slug: "travel", title: "Travel", href: "/travel", images: ["/images/services/travel.jpg"],
     desc: "We help plan trips for individuals and groups who want to explore Kenya, East Africa and beyond." },
 ];
 
 const routes: Item[] = [
-  { slug: "sirimon", title: "Sirimon", href: "/hiking#sirimon", image: "/images/routes/r sirimoni.jpg",
+  { slug: "sirimon", title: "Sirimon", href: "/hiking#sirimon", images: ["/images/routes/sirimon-1.jpg", "/images/routes/sirimon-2.jpg"],
     desc: "Forest, moorland and beautiful mountain scenery." },
-  { slug: "chogoria", title: "Chogoria", href: "/hiking#chogoria", image: "/images/routes/chogoria.jpg",
+  { slug: "chogoria", title: "Chogoria", href: "/hiking#chogoria", images: ["/images/routes/chogoria.jpg"],
     desc: "Known for valleys, waterfalls, dramatic landscapes and scenic views." },
-  { slug: "naro-moru", title: "Naro Moru", href: "/hiking#naro-moru", image: "/images/routes/naro-moru.jpg",
+  { slug: "naro-moru", title: "Naro Moru", href: "/hiking#naro-moru", images: ["/images/routes/naro-moru.jpg"],
     desc: "A popular route providing access to the higher parts of the mountain." },
-  { slug: "burguret", title: "Burguret", href: "/hiking#burguret", image: "/images/routes/burguret.jpg",
+  { slug: "burguret", title: "Burguret", href: "/hiking#burguret", images: ["/images/routes/burguret.jpg"],
     desc: "A quieter and more remote route for those looking for a less crowded experience." },
 ];
 
@@ -38,7 +39,7 @@ function OfferRow({ index, item }: { index: number; item: Item }) {
     <Reveal className={`flex flex-col items-center gap-10 md:gap-16 ${reversed ? "md:flex-row-reverse" : "md:flex-row"}`}>
       <div className="relative aspect-[4/3] w-full overflow-hidden md:w-1/2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+        <img src={item.images[0]} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
       </div>
       <div className="w-full md:w-1/2">
         <span className="font-serif text-6xl font-light text-[#C49A3A]/50">
