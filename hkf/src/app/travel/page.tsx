@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 const generalWaLink = `https://wa.me/254181189908?text=${encodeURIComponent("Hi! I'd like help planning a trip with Hikers Fusion KE.")}`;
 
 const destinations = [
-  { slug: "diani", name: "Diani", image: "/images/travel/diani.jpg" },
-  { slug: "mombasa", name: "Mombasa", image: "/images/travel/mombasa.jpg" },
+  { slug: "diani", name: "Diani", image: "public/images/travel/diani.jpg" },
+  { slug: "mombasa", name: "Mombasa", image: "public/images/travel/mombasa.jpg" },
 ];
 
 function waLink(subject: string) {
