@@ -33,7 +33,7 @@ export default function ContactPage() {
               <a href="https://wa.me/254181189908" className="font-semibold text-[#1F4D36] hover:text-[#C49A3A]">+254 181 189908</a>
             </p>
             <p>
-              <a href="mailto:info@hikersfusion.co.ke" className="font-semibold text-[#1F4D36] hover:text-[#C49A3A]">info@hikersfusion.co.ke</a>
+              <a href="mailto:info@hikersfusion.com" className="font-semibold text-[#1F4D36] hover:text-[#C49A3A]">info@hikersfusion.com</a>
             </p>
           </div>
         </Reveal>

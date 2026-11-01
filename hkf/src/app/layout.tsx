@@ -104,7 +104,7 @@ function SiteFooter() {
           <p className="mt-2">
             <a href="https://wa.me/254181189908" className="hover:text-[#C49A3A]">+254 181 189908</a>
             {" "}&bull;{" "}
-            <a href="mailto:info@hikersfusion.co.ke" className="hover:text-[#C49A3A]">info@hikersfusion.co.ke</a>
+            <a href="mailto:info@hikersfusion.com" className="hover:text-[#C49A3A]">info@hikersfusion.com</a>
           </p>
         </div>
       </div>
